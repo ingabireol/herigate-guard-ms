@@ -7,7 +7,6 @@ const ImageSlide = () => {
   const nextImage = () => {
     setIndex((prev) => (prev + 1) % homeImages.length);
   };
-
   const prevImage = () => {
     setIndex((prev) => (prev - 1 + homeImages.length) % homeImages.length);
   };
