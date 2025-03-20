@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 14% 96%; /* light-stone */
+    --foreground: 210 29% 24%; /* deep-navy */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 24%; /* deep-navy */
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 24%; /* deep-navy */
+    
+    --primary: 207 80% 50%; /* heritage-blue */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 43 60% 52%; /* warm-gold */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 210 13% 50%; /* slate-gray */
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 27 71% 31%; /* earthen-brown */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%; /* error-red */
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 207 80% 50%; /* heritage-blue */
+    
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 210 29% 24%; /* deep-navy */
+    --foreground: 60 14% 96%; /* light-stone */
+    
+    --card: 210 29% 24%; /* deep-navy */
+    --card-foreground: 60 14% 96%; /* light-stone */
+    
+    --popover: 210 29% 24%; /* deep-navy */
+    --popover-foreground: 60 14% 96%; /* light-stone */
+    
+    --primary: 207 80% 50%; /* heritage-blue */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 43 60% 52%; /* warm-gold */
+    --secondary-foreground: 0 0% 0%;
+    
+    --muted: 210 13% 50%; /* slate-gray */
+    --muted-foreground: 215 20% 75%;
+    
+    --accent: 27 71% 31%; /* earthen-brown */
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%; /* error-red */
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 210 29% 30%;
+    --input: 210 29% 30%;
+    --ring: 207 80% 50%; /* heritage-blue */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair font-semibold;
+  }
+  h1 {
+    @apply text-4xl md:text-5xl;
+  }
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+  p, a, li, span, div {
+    @apply font-inter;
+  }
+}
