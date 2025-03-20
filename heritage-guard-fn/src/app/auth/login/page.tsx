@@ -1,14 +1,15 @@
+// src/app/auth/login/page.tsx
 "use client"
 
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import * as z from "zod"
-import { useAuth } from "@/store/auth-context"
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useAuth } from "@/store/auth-context";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -16,20 +17,23 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Loader2 } from "lucide-react";
 
 const loginSchema = z.object({
   usernameOrEmail: z.string().min(3, "Username or email is required"),
   password: z.string().min(6, "Password must be at least 6 characters"),
-})
+});
 
-type LoginFormValues = z.infer<typeof loginSchema>
+type LoginFormValues = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
-  const { login } = useAuth()
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  const { login } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnUrl = searchParams.get('returnUrl') || '/dashboard';
 
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -37,17 +41,19 @@ export default function LoginPage() {
       usernameOrEmail: "",
       password: "",
     },
-  })
+  });
 
   async function onSubmit(values: LoginFormValues) {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
-      await login(values.usernameOrEmail, values.password)
-      // Redirect will be handled in the auth context
+      await login({
+        usernameOrEmail: values.usernameOrEmail,
+        password: values.password
+      });
+      // Auth context will handle redirection
     } catch (error) {
-      console.error("Login error:", error)
-    } finally {
-      setIsLoading(false)
+      console.error("Login error:", error);
+      setIsLoading(false);
     }
   }
 
@@ -93,7 +99,14 @@ export default function LoginPage() {
                 )}
               />
               <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? "Signing in..." : "Sign in"}
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Signing in...
+                  </>
+                ) : (
+                  "Sign in"
+                )}
               </Button>
             </form>
           </Form>
@@ -134,5 +147,5 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

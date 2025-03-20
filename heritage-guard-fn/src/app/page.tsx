@@ -6,28 +6,47 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-[calc(100vh-4rem)]">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-b from-deep-navy to-heritage-blue text-white">
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Preserving Rwanda&apos;s Rich Cultural Heritage
-            </h1>
-            <p className="text-lg md:text-xl mb-8 text-light-stone">
-              Discover, explore, and help preserve the cultural treasures that make Rwanda unique
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" asChild>
-                <Link href="/heritage">Explore Heritage</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
-                <Link href="/about">Learn More</Link>
-              </Button>
-            </div>
+      <section className="relative h-[80vh] overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="object-cover w-full h-full"
+          poster="/images/rwesero_museum.jpg" // Fallback image while video loads
+        >
+          <source 
+            src="https://www.youtube.com/watch?v=8AgAC03CCNI" 
+            type="video/mp4" 
+          />
+          Your browser does not support the video tag.
+        </video>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-deep-navy opacity-60"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
+        <div className="max-w-3xl text-white">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Preserving Rwanda's Rich Cultural Heritage
+          </h1>
+          <p className="text-lg md:text-xl mb-8 text-light-stone">
+            Discover, explore, and help preserve the cultural treasures that make Rwanda unique
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button size="lg" asChild>
+              <Link href="/heritage">Explore Heritage</Link>
+            </Button>
+            <Button size="lg" variant="outline" className="bg-transparent text-white border-white hover:bg-white/10" asChild>
+              <Link href="/about">Learn More</Link>
+            </Button>
           </div>
         </div>
-        <div className="absolute inset-0 bg-deep-navy opacity-40"></div>
-      </section>
-
+      </div>
+    </section>
       {/* Featured Section */}
       <section className="py-16 bg-light-stone">
         <div className="container mx-auto px-4">

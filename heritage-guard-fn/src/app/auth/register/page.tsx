@@ -68,16 +68,15 @@ export default function RegisterPage() {
   })
 
   async function onSubmit(values: RegisterFormValues) {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       // Remove confirmPassword field before sending to API
-      const { confirmPassword, ...registerData } = values
-      await register(registerData)
-      // Redirect will be handled in the auth context
+      const { confirmPassword, ...registerData } = values;
+      await register(registerData);
+      // Auth context will handle redirection
     } catch (error) {
-      console.error("Registration error:", error)
-    } finally {
-      setIsLoading(false)
+      console.error("Registration error:", error);
+      setIsLoading(false);
     }
   }
 

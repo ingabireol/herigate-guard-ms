@@ -1,13 +1,14 @@
+// src/components/auth/protected-route.tsx
 "use client"
 
-import { useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
-import { useAuth } from '@/store/auth-context'
+import { useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useAuth } from '@/store/auth-context';
 
 interface ProtectedRouteProps {
-  children: React.ReactNode
-  requireAuth?: boolean
-  requiredRoles?: string[]
+  children: React.ReactNode;
+  requireAuth?: boolean;
+  requiredRoles?: string[];
 }
 
 export function ProtectedRoute({ 
@@ -15,50 +16,59 @@ export function ProtectedRoute({
   requireAuth = true,
   requiredRoles = []
 }: ProtectedRouteProps) {
-  const { isAuthenticated, user, loading, hasRole } = useAuth()
-  const router = useRouter()
-  const pathname = usePathname()
+  const { isAuthenticated, user, loading, hasRole } = useAuth();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     // If still loading auth state, wait
-    if (loading) return
+    if (loading) return;
 
     // If authentication is required but user isn't authenticated, redirect to login
     if (requireAuth && !isAuthenticated) {
-      const returnUrl = encodeURIComponent(pathname)
-      router.push(`/auth/login?returnUrl=${returnUrl}`)
-      return
+      const returnUrl = encodeURIComponent(pathname);
+      router.push(`/auth/login?returnUrl=${returnUrl}`);
+      return;
     }
 
     // If authentication is not required but user is authenticated, redirect to dashboard
     // Useful for login/register pages which shouldn't be accessible once logged in
     if (!requireAuth && isAuthenticated) {
-      router.push('/dashboard')
-      return
+      router.push('/dashboard');
+      return;
     }
 
     // Check for required roles
     if (requireAuth && isAuthenticated && requiredRoles.length > 0) {
-      const hasRequiredRole = requiredRoles.some(role => hasRole(role))
+      const hasRequiredRole = requiredRoles.some(role => hasRole(role));
       if (!hasRequiredRole) {
-        router.push('/unauthorized')
-        return
+        router.push('/unauthorized');
+        return;
       }
     }
-  }, [isAuthenticated, loading, requireAuth, router, pathname, requiredRoles, hasRole])
+  }, [isAuthenticated, loading, requireAuth, router, pathname, requiredRoles, hasRole]);
 
-  // Show nothing while loading or redirecting
-  if (loading || (requireAuth && !isAuthenticated) || (!requireAuth && isAuthenticated)) {
-    return <div className="flex h-screen items-center justify-center">Loading...</div>
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-heritage-blue"></div>
+      </div>
+    );
   }
 
-  // Show unauthorized message if user doesn't have required role
+  // If auth requirements aren't met, don't render anything (we're redirecting)
+  if ((requireAuth && !isAuthenticated) || (!requireAuth && isAuthenticated)) {
+    return null;
+  }
+
+  // If role requirements aren't met, don't render anything (we're redirecting)
   if (requireAuth && isAuthenticated && requiredRoles.length > 0) {
-    const hasRequiredRole = requiredRoles.some(role => hasRole(role))
+    const hasRequiredRole = requiredRoles.some(role => hasRole(role));
     if (!hasRequiredRole) {
-      return <div className="flex h-screen items-center justify-center">Unauthorized</div>
+      return null;
     }
   }
 
-  return <>{children}</>
+  return <>{children}</>;
 }

@@ -1,256 +1,490 @@
-// import React from 'react';
-// import { motion } from 'framer-motion';
-// import Image from 'next/image';
-// import Link from 'next/link';
-// import img1 from '../assets/rwesero-museum_1.jpg'; // Example image for hero section
-// import img2 from '../assets/pot-1_2.jpg'; // Example image for team section
-// import img3 from '../assets/pot-2_1.jpg'; // Example image for partners section
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { 
+  Globe, 
+  Users, 
+  BookOpen, 
+  Shield, 
+  Heart, 
+  BookMarked
+} from "lucide-react"
 
-// // Define interfaces for type safety
-// interface SocialLinks {
-//   twitter: string;
-//   linkedin: string;
-// }
+export default function AboutPage() {
+  return (
+    <div className="flex flex-col">
+      {/* Hero Section */}
+      <section className="relative py-16 md:py-24 bg-gradient-to-b from-deep-navy to-heritage-blue text-white">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              About Rwanda Heritage Guard
+            </h1>
+            <p className="text-lg md:text-xl mb-6 text-light-stone">
+              Preserving Rwanda's cultural legacy for future generations
+            </p>
+          </div>
+        </div>
+        <div className="absolute inset-0 bg-deep-navy opacity-40"></div>
+      </section>
 
-// interface TeamMember {
-//   id: number;
-//   name: string;
-//   role: string;
-//   bio: string;
-//   photo: string;
-//   social: SocialLinks;
-// }
+      {/* Mission & Vision Section */}
+      <section className="py-16 bg-light-stone">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
+              <p className="text-lg text-slate-gray mb-6">
+                The Rwanda Heritage Guard is dedicated to identifying, preserving, and promoting Rwanda's rich cultural heritage. 
+                We aim to create a comprehensive digital archive that connects past traditions with present generations, ensuring 
+                the longevity of Rwanda's unique cultural identity.
+              </p>
+              <p className="text-lg text-slate-gray">
+                Through collaborative efforts with communities, cultural institutions, and government entities, we document and 
+                digitize tangible and intangible heritage, making it accessible to all and safeguarding it for future generations.
+              </p>
+            </div>
+            <div className="order-first md:order-last flex justify-center">
+  <div className="w-full max-w-md h-80 bg-slate-gray rounded-lg relative overflow-hidden">
+    <Image 
+      src="/images/intore.jpeg"
+      alt="Intore Dance"
+      fill
+      priority={true}
+      className="object-cover"
+    />
+  </div>
+</div>
+          </div>
 
-// interface Partner {
-//   id: number;
-//   logo: string;
-//   name: string;
-// }
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-24">
+            <div className="flex justify-center">
+              <div className="w-full max-w-md h-80 bg-slate-gray rounded-lg relative overflow-hidden">
+                {/* Replace with actual image */}
+                <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                  Vision Image Placeholder
+                </div>
+              </div>
+            </div>
+            <div>
+              <h2 className="text-3xl font-bold mb-6">Our Vision</h2>
+              <p className="text-lg text-slate-gray mb-6">
+                We envision a future where Rwanda's cultural heritage is celebrated globally, contributing to 
+                national identity and pride while fostering cultural tourism and economic development. Our vision 
+                encompasses a Rwanda where traditional knowledge and practices remain vibrant and relevant in contemporary society.
+              </p>
+              <p className="text-lg text-slate-gray">
+                The Rwanda Heritage Guard aspires to be the leading platform for cultural preservation in the region, 
+                setting standards for digital archiving and community-based heritage management approaches that can be 
+                replicated throughout Africa and beyond.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-// const About: React.FC = () => {
-//   const teamMembers: TeamMember[] = [
-//     {
-//       id: 1,
-//       name: 'Alice Uwase',
-//       role: 'Founder & CEO',
-//       bio: 'Passionate about preserving Rwanda\'s cultural heritage, Alice leads the team with a vision for global impact.',
-//       photo: img2,
-//       social: {
-//         twitter: '#',
-//         linkedin: '#'
-//       }
-//     },
-//     {
-//       id: 2,
-//       name: 'Jean de Dieu',
-//       role: 'Lead Developer',
-//       bio: 'A tech enthusiast with a love for history, Jean ensures the platform is innovative and user-friendly.',
-//       photo: img3,
-//       social: {
-//         twitter: '#',
-//         linkedin: '#'
-//       }
-//     },
-//     {
-//       id: 3,
-//       name: 'Grace Mukamana',
-//       role: 'Community Manager',
-//       bio: 'Grace connects with communities to ensure their voices are heard and their stories are preserved.',
-//       photo: img2,
-//       social: {
-//         twitter: '#',
-//         linkedin: '#'
-//       }
-//     }
-//   ];
+      {/* Values Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="text-3xl font-bold mb-6">Our Core Values</h2>
+            <p className="text-lg text-slate-gray">
+              The principles that guide our work and define our commitment to Rwanda's cultural heritage
+            </p>
+          </div>
 
-//   const partners: Partner[] = [
-//     { id: 1, logo: img1, name: 'Rwanda Cultural Heritage Board' },
-//     { id: 2, logo: img2, name: 'UNESCO Rwanda' },
-//     { id: 3, logo: img3, name: 'Ministry of Culture' }
-//   ];
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="bg-background border-none shadow-md">
+              <CardContent className="pt-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-heritage-blue bg-opacity-10 flex items-center justify-center mb-4">
+                    <Shield className="w-8 h-8 text-heritage-blue" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Authenticity</h3>
+                  <p className="text-slate-gray">
+                    We are committed to accurate representation of Rwanda's cultural heritage, 
+                    ensuring all documentation and preservation efforts maintain the integrity 
+                    and authenticity of cultural practices and artifacts.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-//   return (
-//     <main className="min-h-screen">
-//       {/* Hero Section */}
-//       <section className="relative h-96 md:h-screen md:max-h-[600px] bg-deep-navy">
-//         <div className="relative h-full w-full">
-//           <Image 
-//             src={img1} 
-//             alt="Heritage Site" 
-//             fill
-//             priority
-//             sizes="100vw"
-//             className="object-cover opacity-70"
-//           />
-//         </div>
-//         <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8">
-//           <motion.h1 
-//             initial={{ opacity: 0, y: 50 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 1 }}
-//             className="text-light-stone mb-4"
-//           >
-//             About Heritage Guard
-//           </motion.h1>
-//           <motion.p 
-//             initial={{ opacity: 0, y: 50 }}
-//             animate={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 1, delay: 0.2 }}
-//             className="text-lg md:text-xl text-light-stone mb-8 max-w-3xl"
-//           >
-//             Preserving Rwanda's Cultural Heritage for Future Generations
-//           </motion.p>
-//         </div>
-//       </section>
+            <Card className="bg-background border-none shadow-md">
+              <CardContent className="pt-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-heritage-blue bg-opacity-10 flex items-center justify-center mb-4">
+                    <Users className="w-8 h-8 text-heritage-blue" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Community Participation</h3>
+                  <p className="text-slate-gray">
+                    We believe that effective heritage preservation must involve the communities 
+                    from which these cultural elements originate, respecting their ownership and 
+                    ensuring their active participation in our initiatives.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-//       {/* Mission & Vision Section */}
-//       <section className="py-16">
-//         <div className="container">
-//           <h2 className="text-deep-navy text-center mb-12">
-//             Our Mission & Vision
-//           </h2>
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-//             <motion.div 
-//               initial={{ opacity: 0, x: -50 }}
-//               whileInView={{ opacity: 1, x: 0 }}
-//               transition={{ duration: 0.5 }}
-//               className="bg-light-stone p-6 rounded-lg shadow-md"
-//             >
-//               <h3 className="text-deep-navy mb-4">Mission</h3>
-//               <p className="text-deep-navy/80">
-//                 To digitally preserve and promote Rwanda's cultural heritage for education, research, and community engagement.
-//               </p>
-//             </motion.div>
-//             <motion.div 
-//               initial={{ opacity: 0, x: 50 }}
-//               whileInView={{ opacity: 1, x: 0 }}
-//               transition={{ duration: 0.5, delay: 0.2 }}
-//               className="bg-light-stone p-6 rounded-lg shadow-md"
-//             >
-//               <h3 className="text-deep-navy mb-4">Vision</h3>
-//               <p className="text-deep-navy/80">
-//                 To create a global community dedicated to the conservation of cultural heritage.
-//               </p>
-//             </motion.div>
-//           </div>
-//         </div>
-//       </section>
+            <Card className="bg-background border-none shadow-md">
+              <CardContent className="pt-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-heritage-blue bg-opacity-10 flex items-center justify-center mb-4">
+                    <Globe className="w-8 h-8 text-heritage-blue" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Accessibility</h3>
+                  <p className="text-slate-gray">
+                    We strive to make Rwanda's cultural heritage accessible to all, both 
+                    within Rwanda and internationally, through digital platforms, educational 
+                    initiatives, and inclusive programming.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-//       {/* Our Story Section */}
-//       <section className="py-16 bg-light-stone">
-//         <div className="container">
-//           <h2 className="text-deep-navy text-center mb-12">
-//             Our Story
-//           </h2>
-//           <motion.div 
-//             initial={{ opacity: 0, y: 50 }}
-//             whileInView={{ opacity: 1, y: 0 }}
-//             transition={{ duration: 0.5 }}
-//             className="text-deep-navy/80 space-y-6"
-//           >
-//             <p>
-//               Heritage Guard was founded in 2023 with the goal of preserving Rwanda's rich cultural heritage for future generations. Our journey began with a small team of passionate individuals dedicated to documenting and sharing the stories of Rwanda's heritage sites.
-//             </p>
-//             <p>
-//               Over the years, we've achieved significant milestones, including the digitization of over 100 heritage sites and the creation of a vibrant community platform. Our future plans include expanding our reach to other African countries and launching new educational initiatives.
-//             </p>
-//           </motion.div>
-//         </div>
-//       </section>
+            <Card className="bg-background border-none shadow-md">
+              <CardContent className="pt-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-heritage-blue bg-opacity-10 flex items-center justify-center mb-4">
+                    <BookOpen className="w-8 h-8 text-heritage-blue" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Education</h3>
+                  <p className="text-slate-gray">
+                    We are dedicated to creating educational opportunities that promote 
+                    understanding and appreciation of Rwanda's rich cultural heritage, 
+                    especially among younger generations.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-//       {/* Team Section */}
-//       <section className="py-16">
-//         <div className="container">
-//           <h2 className="text-deep-navy text-center mb-12">
-//             Meet the Team
-//           </h2>
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-//             {teamMembers.map((member) => (
-//               <motion.div 
-//                 key={member.id} 
-//                 initial={{ opacity: 0, y: 50 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 transition={{ duration: 0.5, delay: member.id * 0.1 }}
-//                 className="bg-light-stone p-6 rounded-lg shadow-md text-center"
-//               >
-//                 <div className="relative w-32 h-32 mx-auto mb-4 overflow-hidden rounded-full">
-//                   <Image 
-//                     src={member.photo} 
-//                     alt={member.name}
-//                     fill
-//                     sizes="(max-width: 128px) 100vw, 128px"
-//                     className="object-cover"
-//                   />
-//                 </div>
-//                 <h4 className="text-deep-navy mb-2">{member.name}</h4>
-//                 <p className="text-slate-gray text-sm mb-4">{member.role}</p>
-//                 <p className="text-deep-navy/80 mb-4">{member.bio}</p>
-//                 <div className="flex justify-center space-x-4">
-//                   <Link href={member.social.twitter} className="text-heritage-blue hover:text-deep-navy transition-colors">
-//                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-//                       <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-//                     </svg>
-//                   </Link>
-//                   <Link href={member.social.linkedin} className="text-heritage-blue hover:text-deep-navy transition-colors">
-//                     <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-//                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.784 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-//                     </svg>
-//                   </Link>
-//                 </div>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
+            <Card className="bg-background border-none shadow-md">
+              <CardContent className="pt-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-heritage-blue bg-opacity-10 flex items-center justify-center mb-4">
+                    <BookMarked className="w-8 h-8 text-heritage-blue" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Innovation</h3>
+                  <p className="text-slate-gray">
+                    We embrace innovative approaches and technologies in our preservation 
+                    efforts, finding new ways to document, share, and revitalize 
+                    traditional practices in contemporary contexts.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
 
-//       {/* Partners Section */}
-//       <section className="py-16 bg-light-stone">
-//         <div className="container">
-//           <h2 className="text-deep-navy text-center mb-12">
-//             Our Partners
-//           </h2>
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-//             {partners.map((partner) => (
-//               <motion.div 
-//                 key={partner.id} 
-//                 initial={{ opacity: 0, y: 50 }}
-//                 whileInView={{ opacity: 1, y: 0 }}
-//                 transition={{ duration: 0.5, delay: partner.id * 0.1 }}
-//                 className="bg-white p-6 rounded-lg shadow-md text-center"
-//               >
-//                 <div className="relative w-32 h-32 mx-auto mb-4">
-//                   <Image 
-//                     src={partner.logo} 
-//                     alt={partner.name}
-//                     fill
-//                     sizes="(max-width: 128px) 100vw, 128px"
-//                     className="object-contain"
-//                   />
-//                 </div>
-//                 <h4 className="text-deep-navy">{partner.name}</h4>
-//               </motion.div>
-//             ))}
-//           </div>
-//         </div>
-//       </section>
+            <Card className="bg-background border-none shadow-md">
+              <CardContent className="pt-6">
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-16 h-16 rounded-full bg-heritage-blue bg-opacity-10 flex items-center justify-center mb-4">
+                    <Heart className="w-8 h-8 text-heritage-blue" />
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">Sustainability</h3>
+                  <p className="text-slate-gray">
+                    We are committed to developing sustainable preservation practices that 
+                    ensure the long-term viability of Rwanda's cultural heritage, while 
+                    contributing to the economic and social development of communities.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
 
-//       {/* CTA Section */}
-//       <section className="py-16">
-//         <div className="container text-center">
-//           <h2 className="text-deep-navy mb-4">
-//             Join Us in Preserving Rwanda's Heritage
-//           </h2>
-//           <p className="text-lg text-deep-navy/80 mb-8">
-//             Be part of a global movement to protect and celebrate cultural heritage.
-//           </p>
-//           <button className="bg-heritage-blue hover:bg-deep-navy text-light-stone px-6 py-3 rounded-lg font-medium transition-colors">
-//             Join the Community
-//           </button>
-//         </div>
-//       </section>
-//     </main>
-//   );
-// };
+      {/* Our Work Section */}
+      <section className="py-16 bg-light-stone">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="text-3xl font-bold mb-6">Our Work</h2>
+            <p className="text-lg text-slate-gray">
+              Explore the key areas of our heritage preservation efforts
+            </p>
+          </div>
 
-// export default About;
+          <Tabs defaultValue="documentation" className="w-full">
+            <TabsList className="w-full flex justify-center mb-8">
+              <TabsTrigger value="documentation">Documentation</TabsTrigger>
+              <TabsTrigger value="preservation">Preservation</TabsTrigger>
+              <TabsTrigger value="education">Education</TabsTrigger>
+              <TabsTrigger value="promotion">Promotion</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="documentation" className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Digital Documentation</h3>
+                  <p className="text-slate-gray mb-6">
+                    Our team collects and documents Rwanda's rich cultural heritage through interviews, recordings, 
+                    photographs, and detailed cataloging. We collaborate with elders, artisans, and traditional 
+                    knowledge holders across the country to ensure comprehensive documentation.
+                  </p>
+                  <p className="text-slate-gray mb-6">
+                    Using advanced digital technologies, we create high-quality records of:
+                  </p>
+                  <ul className="list-disc pl-6 mb-6 text-slate-gray space-y-2">
+                    <li>Traditional crafts and techniques</li>
+                    <li>Oral histories and storytelling</li>
+                    <li>Music, dance, and performance art</li>
+                    <li>Indigenous knowledge systems</li>
+                    <li>Historical sites and architecture</li>
+                  </ul>
+                  <Button>Learn More</Button>
+                </div>
+                <div className="flex justify-center">
+                  <div className="w-full max-w-md h-80 bg-slate-gray rounded-lg relative overflow-hidden">
+                    {/* Replace with actual image */}
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                      Documentation Image
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="preservation" className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div className="flex justify-center order-last md:order-first">
+                  <div className="w-full max-w-md h-80 bg-slate-gray rounded-lg relative overflow-hidden">
+                    {/* Replace with actual image */}
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                      Preservation Image
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Cultural Preservation</h3>
+                  <p className="text-slate-gray mb-6">
+                    Our preservation initiatives focus on safeguarding both tangible and intangible 
+                    cultural heritage elements that are at risk of disappearing. We work to revitalize 
+                    traditional practices by creating platforms where knowledge can be transferred to 
+                    younger generations.
+                  </p>
+                  <p className="text-slate-gray mb-6">
+                    Key preservation activities include:
+                  </p>
+                  <ul className="list-disc pl-6 mb-6 text-slate-gray space-y-2">
+                    <li>Creating digital archives of endangered cultural practices</li>
+                    <li>Supporting master artisans through apprenticeship programs</li>
+                    <li>Documenting and preserving traditional languages and dialects</li>
+                    <li>Advocating for policy measures to protect cultural heritage</li>
+                    <li>Conservation of historical artifacts and sites</li>
+                  </ul>
+                  <Button>Explore Initiatives</Button>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="education" className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Educational Outreach</h3>
+                  <p className="text-slate-gray mb-6">
+                    We develop educational programs and resources that promote awareness and 
+                    understanding of Rwanda's cultural heritage. Our initiatives target schools, 
+                    universities, and communities to foster appreciation for traditional knowledge 
+                    and practices.
+                  </p>
+                  <p className="text-slate-gray mb-6">
+                    Our educational approach includes:
+                  </p>
+                  <ul className="list-disc pl-6 mb-6 text-slate-gray space-y-2">
+                    <li>School programs and curriculum development</li>
+                    <li>Workshops and training for teachers</li>
+                    <li>Interactive digital learning resources</li>
+                    <li>Community education events and cultural festivals</li>
+                    <li>Research partnerships with academic institutions</li>
+                  </ul>
+                  <Button>View Resources</Button>
+                </div>
+                <div className="flex justify-center">
+                  <div className="w-full max-w-md h-80 bg-slate-gray rounded-lg relative overflow-hidden">
+                    {/* Replace with actual image */}
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                      Education Image
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="promotion" className="pt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div className="flex justify-center order-last md:order-first">
+                  <div className="w-full max-w-md h-80 bg-slate-gray rounded-lg relative overflow-hidden">
+                    {/* Replace with actual image */}
+                    <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                      Promotion Image
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold mb-4">Cultural Promotion</h3>
+                  <p className="text-slate-gray mb-6">
+                    We work to promote Rwanda's cultural heritage nationally and internationally, 
+                    creating opportunities for cultural expression and exchange. Our promotion 
+                    efforts help sustain cultural practices by generating interest and creating 
+                    economic opportunities for communities.
+                  </p>
+                  <p className="text-slate-gray mb-6">
+                    Cultural promotion initiatives include:
+                  </p>
+                  <ul className="list-disc pl-6 mb-6 text-slate-gray space-y-2">
+                    <li>Digital exhibitions and virtual tours</li>
+                    <li>Cultural tourism development and support</li>
+                    <li>Artisan marketplaces and fair trade partnerships</li>
+                    <li>International cultural exchange programs</li>
+                    <li>Media and publication projects highlighting Rwandan heritage</li>
+                  </ul>
+                  <Button>See Our Impact</Button>
+                </div>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="text-3xl font-bold mb-6">Our Team</h2>
+            <p className="text-lg text-slate-gray">
+              Meet the dedicated professionals working to preserve Rwanda's cultural heritage
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Team Member 1 */}
+            <div className="flex flex-col items-center text-center">
+              <div className="w-40 h-40 rounded-full bg-slate-gray mb-4 overflow-hidden">
+                {/* Replace with actual image */}
+                <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                  {/* Team Member 1 */}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold mb-1">Jean Mugabo</h3>
+              <p className="text-heritage-blue font-medium mb-2">Executive Director</p>
+              <p className="text-slate-gray">
+                Cultural historian and heritage conservation specialist with over 15 years of experience.
+              </p>
+            </div>
+
+            {/* Team Member 2 */}
+            <div className="flex flex-col items-center text-center">
+              <div className="w-40 h-40 rounded-full bg-slate-gray mb-4 overflow-hidden">
+                {/* Replace with actual image */}
+                <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                  {/* Team Member 2 */}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold mb-1">Marie Uwase</h3>
+              <p className="text-heritage-blue font-medium mb-2">Head of Research</p>
+              <p className="text-slate-gray">
+                PhD in Anthropology specializing in East African cultural practices and oral traditions.
+              </p>
+            </div>
+
+            {/* Team Member 3 */}
+            <div className="flex flex-col items-center text-center">
+              <div className="w-40 h-40 rounded-full bg-slate-gray mb-4 overflow-hidden">
+                {/* Replace with actual image */}
+                <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                  {/* Team Member 3 */}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold mb-1">David Habimana</h3>
+              <p className="text-heritage-blue font-medium mb-2">Digital Preservation Lead</p>
+              <p className="text-slate-gray">
+                Technology specialist with expertise in digital archiving and preservation technologies.
+              </p>
+            </div>
+
+            {/* Team Member 4 */}
+            <div className="flex flex-col items-center text-center">
+              <div className="w-40 h-40 rounded-full bg-slate-gray mb-4 overflow-hidden">
+                {/* Replace with actual image */}
+                <div className="absolute inset-0 flex items-center justify-center text-white text-opacity-50">
+                  {/* Team Member 4 */}
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold mb-1">Grace Niyonzima</h3>
+              <p className="text-heritage-blue font-medium mb-2">Community Engagement Manager</p>
+              <p className="text-slate-gray">
+                Specialist in participatory heritage management and community-based conservation approaches.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-12 text-center">
+            <Button asChild>
+              <Link href="/team">View Full Team</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Section */}
+      <section className="py-16 bg-light-stone">
+        <div className="container mx-auto px-4">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <h2 className="text-3xl font-bold mb-6">Our Partners</h2>
+            <p className="text-lg text-slate-gray">
+              We collaborate with organizations that share our commitment to cultural heritage preservation
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {/* Partner logos - replace with actual logos */}
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 1
+            </div>
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 2
+            </div>
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 3
+            </div>
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 4
+            </div>
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 5
+            </div>
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 6
+            </div>
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 7
+            </div>
+            <div className="h-20 bg-white rounded-md shadow flex items-center justify-center">
+              Partner Logo 8
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-16 bg-heritage-blue text-white">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6">Join Our Mission</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto">
+            Help us preserve Rwanda's cultural heritage for future generations.
+            Get involved as a volunteer, contributor, or supporter.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-heritage-blue" size="lg">
+              Become a Volunteer
+            </Button>
+            <Button className="bg-white text-heritage-blue hover:bg-light-stone" size="lg" asChild>
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}

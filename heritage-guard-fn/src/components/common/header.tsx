@@ -54,7 +54,16 @@ const Header = () => {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2" onClick={closeMenu}>
           {/* Replace with actual logo */}
-          <div className="h-8 w-8 rounded-full bg-heritage-blue"></div>
+          <div className="relative h-50 w-10">
+            <Image 
+              src="/images/heritage_guard_logo.webp"
+              alt="Rwanda Heritage Guard Logo"
+              width={120}
+              height={40}
+              priority={true}
+              className="object-contain"
+            />
+          </div>
           <span className="hidden font-playfair text-xl font-bold md:inline-block">
             Rwanda Heritage Guard
           </span>
