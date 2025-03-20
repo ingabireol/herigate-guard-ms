@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
-.arrow-icons:hover{
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+
+.arrow-icons:hover {
     background-color: #000;
-    color: #fff; 
+    color: #fff;
 }
 
-.img-card{
+.img-card {
     background-image: url(assets/pot-2.PNG);
 }

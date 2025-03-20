@@ -202,7 +202,10 @@ const HeritageGuardLanding = () => {
                   </div>
                 </div>
                 <div>
-                  <button className="w-full bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md">
+                  <button 
+                    className="w-full bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-md"
+                    onClick={() => navigate('/auth')}
+                  >
                     Login / Sign Up
                   </button>
                 </div>
